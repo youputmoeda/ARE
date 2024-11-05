@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private AudioClip jumpingSoundClip;
+    [SerializeField] private AudioClip crouchingSoundClip;
+    [SerializeField] private AudioClip sprintingSoundClip;
+    [SerializeField] private AudioClip walkingSoundClip;
+
+
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -96,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             readyToJump = false;
             Invoke(nameof(ResetJump), jumpCooldown);
+            SoundFXManager.instance.PlaySoundFXClip(jumpingSoundClip, transform, 1f);
         }
 
         // When to crouch
@@ -103,6 +110,8 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+            SoundFXManager.instance.PlaySoundFXClip(crouchingSoundClip, transform, 1f);
+
         }
 
         // When to stand up
@@ -115,30 +124,37 @@ public class PlayerMovement : MonoBehaviour
     private void StateHandler()
     {
         // Mode - Sprinting
-        if (grounded && Input.GetKey(sprintKey))
+        if (grounded && Input.GetKey(sprintKey) && (horizontalInput != 0 || verticalInput != 0))
         {
             currentState = MovementState.Sprinting;
             moveSpeed = sprintSpeed;
-        }
 
-        // Mode - Crouching
-        else if (Input.GetKey(crouchKey))
-        {
-            currentState = MovementState.Crouching;
-            moveSpeed = crouchSpeed;
+            // Start running sound if not already playing
+            SoundFXManager.instance.PlayLoopingSoundFX(sprintingSoundClip, transform, 0.5f);
         }
-
         // Mode - Walking
-        else if (grounded)
+        else if (grounded && (horizontalInput != 0 || verticalInput != 0))
         {
             currentState = MovementState.Walking;
             moveSpeed = walkSpeed;
-        }
 
+            // Start running sound if not already playing
+            SoundFXManager.instance.PlayLoopingSoundFX(walkingSoundClip, transform, 0.3f);
+        }
+        // Mode - Crouching
+        else if (grounded && Input.GetKey(crouchKey))
+        {
+            currentState = MovementState.Crouching;
+            moveSpeed = crouchSpeed;
+
+            // Stop running sound when crouching
+            SoundFXManager.instance.StopLoopingSoundFX();
+        }
         // Mode - Air
         else
         {
             currentState = MovementState.Air;
+            SoundFXManager.instance.StopLoopingSoundFX(); // Stop sound when in air
         }
     }
 
