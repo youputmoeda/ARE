@@ -10,6 +10,7 @@ public class TutorialMoveStep : TutorialStep
 
     public override void ActivateStep()
     {
+        tutorialText.text = message;
         pressedW = pressedA = pressedS = pressedD = false;
     }
 
@@ -30,6 +31,6 @@ public class TutorialMoveStep : TutorialStep
     {
         Debug.Log("Passo de movimento concluído.");
         tutorialHasFinished = true;
-        this.gameObject.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 }

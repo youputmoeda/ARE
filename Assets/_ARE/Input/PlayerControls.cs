@@ -251,6 +251,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aiming"",
+                    ""type"": ""Button"",
+                    ""id"": ""23a0f845-d4a6-4b25-8192-22e37e91bafc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeGravity"",
+                    ""type"": ""Button"",
+                    ""id"": ""e40d29ec-baf3-4733-9091-b3633ee061a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -273,6 +291,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attacking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6427d120-8c59-49d4-8017-a6e9a47c56ea"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aiming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21953acc-5bb9-4bbe-b33f-b58b42c96c02"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeGravity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -320,6 +360,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActionsMap = asset.FindActionMap("PlayerActionsMap", throwIfNotFound: true);
         m_PlayerActionsMap_Gathering = m_PlayerActionsMap.FindAction("Gathering", throwIfNotFound: true);
         m_PlayerActionsMap_Attacking = m_PlayerActionsMap.FindAction("Attacking", throwIfNotFound: true);
+        m_PlayerActionsMap_Aiming = m_PlayerActionsMap.FindAction("Aiming", throwIfNotFound: true);
+        m_PlayerActionsMap_ChangeGravity = m_PlayerActionsMap.FindAction("ChangeGravity", throwIfNotFound: true);
         // ThirdPersonMap
         m_ThirdPersonMap = asset.FindActionMap("ThirdPersonMap", throwIfNotFound: true);
         m_ThirdPersonMap_ScrollCamera = m_ThirdPersonMap.FindAction("ScrollCamera", throwIfNotFound: true);
@@ -464,12 +506,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerActionsMapActions> m_PlayerActionsMapActionsCallbackInterfaces = new List<IPlayerActionsMapActions>();
     private readonly InputAction m_PlayerActionsMap_Gathering;
     private readonly InputAction m_PlayerActionsMap_Attacking;
+    private readonly InputAction m_PlayerActionsMap_Aiming;
+    private readonly InputAction m_PlayerActionsMap_ChangeGravity;
     public struct PlayerActionsMapActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Gathering => m_Wrapper.m_PlayerActionsMap_Gathering;
         public InputAction @Attacking => m_Wrapper.m_PlayerActionsMap_Attacking;
+        public InputAction @Aiming => m_Wrapper.m_PlayerActionsMap_Aiming;
+        public InputAction @ChangeGravity => m_Wrapper.m_PlayerActionsMap_ChangeGravity;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionsMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -485,6 +531,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attacking.started += instance.OnAttacking;
             @Attacking.performed += instance.OnAttacking;
             @Attacking.canceled += instance.OnAttacking;
+            @Aiming.started += instance.OnAiming;
+            @Aiming.performed += instance.OnAiming;
+            @Aiming.canceled += instance.OnAiming;
+            @ChangeGravity.started += instance.OnChangeGravity;
+            @ChangeGravity.performed += instance.OnChangeGravity;
+            @ChangeGravity.canceled += instance.OnChangeGravity;
         }
 
         private void UnregisterCallbacks(IPlayerActionsMapActions instance)
@@ -495,6 +547,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attacking.started -= instance.OnAttacking;
             @Attacking.performed -= instance.OnAttacking;
             @Attacking.canceled -= instance.OnAttacking;
+            @Aiming.started -= instance.OnAiming;
+            @Aiming.performed -= instance.OnAiming;
+            @Aiming.canceled -= instance.OnAiming;
+            @ChangeGravity.started -= instance.OnChangeGravity;
+            @ChangeGravity.performed -= instance.OnChangeGravity;
+            @ChangeGravity.canceled -= instance.OnChangeGravity;
         }
 
         public void RemoveCallbacks(IPlayerActionsMapActions instance)
@@ -570,6 +628,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnGathering(InputAction.CallbackContext context);
         void OnAttacking(InputAction.CallbackContext context);
+        void OnAiming(InputAction.CallbackContext context);
+        void OnChangeGravity(InputAction.CallbackContext context);
     }
     public interface IThirdPersonMapActions
     {

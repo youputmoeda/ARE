@@ -20,7 +20,6 @@ public class TutorialManager : MonoBehaviour
         if (currentStepIndex < tutorialSteps.Count)
         {
             tutorialSteps[currentStepIndex].Initialize(this, tutorialText);
-            tutorialText.text = tutorialSteps[currentStepIndex].message;
             tutorialSteps[currentStepIndex].ActivateStep();
         }
     }
@@ -38,8 +37,7 @@ public class TutorialManager : MonoBehaviour
     private void ShowNextStep()
     {
         currentStepIndex++;
-        //Debug.Log(tutorialSteps.Count);
-        //Debug.Log(currentStepIndex);
+        
 
         if (currentStepIndex < tutorialSteps.Count)
         {

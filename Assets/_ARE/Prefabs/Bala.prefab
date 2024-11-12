@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 96a76e5a7701446ce8162776f4aa40ac, type: 3}
+  - {fileID: 2100000, guid: 7934e7945d525419fbcd5cd568363b68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6aec17deda2e4dec99f6095f7e437db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 100
   lifeTime: 3
 --- !u!96 &6232753774923151662
 TrailRenderer:

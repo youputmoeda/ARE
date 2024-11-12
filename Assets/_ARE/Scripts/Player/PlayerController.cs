@@ -7,6 +7,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Class Variables
+    [Header("Sounds")]
+    [SerializeField] private AudioClip jumpingSoundClip;
+    [SerializeField] private AudioClip crouchingSoundClip;
+    [SerializeField] private AudioClip sprintingSoundClip;
+    [SerializeField] private AudioClip walkingSoundClip;
+
     [Header("Components")]
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private Camera _playerCamera;
@@ -52,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _jumpedLastFrame = false;
     private bool _isRotatingClockwise = false;
+    private bool _jumpSoundPlayed = false;
     private float _rotatingToTargetTimer = 0f;
     private float _verticalVelocity = 0f;
     private float _antiBump;
@@ -76,6 +83,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateMovementState();
+        PlayAudios();
 
         HandleVerticalMovement();
         HandleLateralMovement();
@@ -97,6 +105,7 @@ public class PlayerController : MonoBehaviour
                                            isSprinting ? PlayerMovementState.Sprinting :
                                            isMovingLaterally || isMovementInput ? PlayerMovementState.Running : PlayerMovementState.Idling;
 
+
         _playerState.SetPlayerMovementState(lateralState);
 
         // Control Airborn State
@@ -115,6 +124,31 @@ public class PlayerController : MonoBehaviour
         else
         {
             _characterController.stepOffset = _stepOffset;
+        }
+    }
+
+    private void PlayAudios()
+    {
+        if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Sprinting)
+            SoundFXManager.instance.PlayLoopingSoundFX(sprintingSoundClip, transform, 0.5f);
+
+        else if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Walking)
+            SoundFXManager.instance.PlayLoopingSoundFX(walkingSoundClip, transform, 0.3f);
+
+        else if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Jumping)
+        {
+            // Toca o som de salto apenas uma vez
+            if (!_jumpSoundPlayed)
+            {
+                SoundFXManager.instance.PlaySoundFXClip(jumpingSoundClip, transform, 1f);
+                _jumpSoundPlayed = true; // Define como tocado
+            }
+            return;
+        }
+        else
+        {
+            SoundFXManager.instance.StopLoopingSoundFX();
+            _jumpSoundPlayed = false;
         }
     }
 

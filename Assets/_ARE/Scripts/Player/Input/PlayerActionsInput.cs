@@ -10,7 +10,9 @@ public class PlayerActionsInput : MonoBehaviour, PlayerControls.IPlayerActionsMa
     private PlayerLocomotionInput _playerLocomotionInput;
     private PlayerState _playerState;
     public bool GatherPressed { get; private set; }
-    public bool AttackPressed { get; private set; }
+    public bool AimingPressed { get; private set; }
+    public bool AttackPressed { get; set; }
+    public bool ChangeGravityPressed { get; set; }
     #endregion
 
     #region Startup
@@ -55,6 +57,11 @@ public class PlayerActionsInput : MonoBehaviour, PlayerControls.IPlayerActionsMa
         }
     }
 
+    private void LateUpdate()
+    {
+        AttackPressed = false;
+    }
+
     public void SetGatherPressedFalse()
     {
         GatherPressed = false;
@@ -81,6 +88,28 @@ public class PlayerActionsInput : MonoBehaviour, PlayerControls.IPlayerActionsMa
             return;
 
         AttackPressed = true;
+    }
+
+    public void OnAiming(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            AimingPressed = false;
+            return;
+        }
+
+        AimingPressed = true;
+    }
+
+    public void OnChangeGravity(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            ChangeGravityPressed = false;
+            return;
+        }
+
+        ChangeGravityPressed = true;
     }
     #endregion
 }

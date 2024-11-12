@@ -11,6 +11,7 @@ public class TutorialSprintStep : TutorialStep
 
     public override void ActivateStep()
     {
+        tutorialText.text = message;
         this.gameObject.SetActive(true);
         pressedL_Sfhit = false;
     }

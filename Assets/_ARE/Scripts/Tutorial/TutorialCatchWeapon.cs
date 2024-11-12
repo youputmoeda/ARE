@@ -16,7 +16,10 @@ public class TutorialCatchWeapon : TutorialStep
     {
         if (other.CompareTag("Player") && !tutorialHasFinished)
         {
-            tutorialManager.CompleteStep();
+            other.gameObject.GetComponent<PlayerShoot>().enabled = true;
+
+            tutorialManager.CompleteStep(4f);
+
             tutorialHasFinished = true;
         }
     }

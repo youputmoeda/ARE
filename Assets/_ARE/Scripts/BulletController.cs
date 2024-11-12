@@ -18,7 +18,7 @@ public class BulletController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<EnemyController>() != null)
-            other.GetComponent<EnemyController>().Health -= damage;
+            other.GetComponent<EnemyController>().TakeDamage(damage);
 
         Destroy(gameObject);
     }

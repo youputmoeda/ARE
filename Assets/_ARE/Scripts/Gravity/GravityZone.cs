@@ -1,39 +1,58 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GravityZone : MonoBehaviour
 {
-    private Vector3 gravityDirection;
-    public float gravityStrength = 9.81f;
+    [SerializeField] private GameObject _map;
+    [SerializeField] private GameObject _playerActions;
+    [SerializeField] private Vector3 _newPosition;
+
+    [SerializeField] private float _newXAngle;
+    [SerializeField] private float _newYAngle;
+    [SerializeField] private float _newZAngle;
+
+    bool _isInverted = false;
+    Vector3 _initialPosition;
+    PlayerController _player;
+    PlayerActionsInput _actionsInput;
+
+    private void Awake()
+    {
+        _initialPosition = _map.transform.position;
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+    }
+
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        _initialPosition = _map.transform.position;
+        var teste = PlayerInputManager.Instance;
+        _player = teste.GetComponentInParent<PlayerController>();
+        _actionsInput = _player.GetComponent<PlayerActionsInput>();
+        Debug.Log("Player encontrado: " + _player);
+        Debug.Log("ActionsInput encontrado: " + _actionsInput);
+    }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player")) // Verifica se o objeto que entra é o jogador
-        {
-            Rigidbody rb = other.GetComponentInParent<Rigidbody>();
-            PlayerMovement pm = other.GetComponentInParent<PlayerMovement>();
-
-            if (rb != null)
-            {
-                // Remove a gravidade padrão
-                rb.useGravity = false;
-
-                //gravityDirection = pm.isForceDown ? Vector3.up : Vector3.down;
-
-                // Aplica a gravidade personalizada
-                rb.AddForce(gravityDirection.normalized * -gravityStrength, ForceMode.Acceleration);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
         if (other.CompareTag("Player"))
         {
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-            if (rb != null)
+            Debug.Log("O Player está dentro do trigger da GravityZone.");
+            Debug.Log("ChangeGravityPressed está ativo? " + _actionsInput.ChangeGravityPressed);
+
+            if (_actionsInput.ChangeGravityPressed)
             {
-                // Restaura a gravidade padrão ao sair da zona
-                rb.useGravity = true;
+                Debug.Log("ChangeGravityPressed ativado, alterando gravidade.");
+                _map.transform.Rotate(_newXAngle, _newYAngle, _newZAngle);
+
+                _map.transform.position = _isInverted ? _initialPosition : _newPosition;
+                _isInverted = !_isInverted;
+                _actionsInput.ChangeGravityPressed = !_actionsInput.ChangeGravityPressed;
+                Debug.Log("Gravidade alterada. Novo estado de _isInverted: " + _isInverted);
             }
         }
     }
