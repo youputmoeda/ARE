@@ -4,45 +4,17 @@ public class TeleporterPad : MonoBehaviour
 {
     [Header("Teleporter Settings")]
     [SerializeField] private Transform destination;
-    bool hasLeftCube = false;
-    bool jumpedOnPlatform = false;
 
     [Header("Objects To Enable")]
     [SerializeField] private GameObject objectToEnable;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && hasLeftCube && jumpedOnPlatform)
+        if (other.CompareTag("Player"))
         {
             objectToEnable.SetActive(true);
-
-            if (other.transform != null &&
-                other.transform.TryGetComponent<PlayerController>(out var player))
-            {
+            if (other.transform != null && other.transform.TryGetComponent<PlayerController>(out var player))
                 player.Teleport(destination.position, destination.rotation);
-            }
-            hasLeftCube = false;
-            jumpedOnPlatform = false;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (other.TryGetComponent<PlayerState>(out var player) &&
-                player.CurrentPlayerMovementState == PlayerMovementState.Jumping)
-            {
-                jumpedOnPlatform = true;
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            hasLeftCube = true;
         }
     }
 

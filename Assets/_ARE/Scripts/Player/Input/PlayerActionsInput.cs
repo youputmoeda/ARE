@@ -10,6 +10,7 @@ public class PlayerActionsInput : MonoBehaviour, PlayerControls.IPlayerActionsMa
     private PlayerLocomotionInput _playerLocomotionInput;
     private PlayerState _playerState;
     public bool GatherPressed { get; private set; }
+    public bool InteractPressed { get; set; }
     public bool AimingPressed { get; private set; }
     public bool AttackPressed { get; set; }
     public bool ChangeGravityPressed { get; set; }
@@ -110,6 +111,17 @@ public class PlayerActionsInput : MonoBehaviour, PlayerControls.IPlayerActionsMa
         }
 
         ChangeGravityPressed = true;
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            InteractPressed = false;
+            return;
+        }
+
+        InteractPressed = true;
     }
     #endregion
 }

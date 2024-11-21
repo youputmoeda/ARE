@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera _playerCamera;
     public float RotationMismatch { get; private set; } = 0f;
     public bool IsRotatingToTarget { get; private set; } = false;
+    public bool _isThirdPlayer = true;
 
     [Header("Base Movement")]
     public float walkAcceleration = 25f;
@@ -83,7 +84,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateMovementState();
-        PlayAudios();
+        if (_isThirdPlayer)
+            PlayAudios();
 
         HandleVerticalMovement();
         HandleLateralMovement();
@@ -132,7 +134,7 @@ public class PlayerController : MonoBehaviour
         if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Sprinting)
             SoundFXManager.instance.PlayLoopingSoundFX(sprintingSoundClip, transform, 0.5f);
 
-        else if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Walking)
+        else if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Running)
             SoundFXManager.instance.PlayLoopingSoundFX(walkingSoundClip, transform, 0.3f);
 
         else if (_playerState.CurrentPlayerMovementState == PlayerMovementState.Jumping)

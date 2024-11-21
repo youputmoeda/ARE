@@ -20,9 +20,6 @@ public class ThirdPersonInput : MonoBehaviour, PlayerControls.IThirdPersonMapAct
     #region Startup
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         _thirdPersonFollow = _virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
     }
     private void OnEnable()

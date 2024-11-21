@@ -269,6 +269,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""c79943ab-25ee-4c88-846e-606253179357"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -315,6 +324,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ChangeGravity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11d34cf3-06ec-4d7d-9914-0bd48e5eb9e2"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -345,6 +365,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerUIInteractionMap"",
+            ""id"": ""7eb60d44-c031-418d-b280-6f49e5c5ddda"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e9b96df-ccf9-461b-ab77-83b42ed6d84c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""19f6c098-4a27-4406-a67c-8102a849354a"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -362,9 +410,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActionsMap_Attacking = m_PlayerActionsMap.FindAction("Attacking", throwIfNotFound: true);
         m_PlayerActionsMap_Aiming = m_PlayerActionsMap.FindAction("Aiming", throwIfNotFound: true);
         m_PlayerActionsMap_ChangeGravity = m_PlayerActionsMap.FindAction("ChangeGravity", throwIfNotFound: true);
+        m_PlayerActionsMap_Interact = m_PlayerActionsMap.FindAction("Interact", throwIfNotFound: true);
         // ThirdPersonMap
         m_ThirdPersonMap = asset.FindActionMap("ThirdPersonMap", throwIfNotFound: true);
         m_ThirdPersonMap_ScrollCamera = m_ThirdPersonMap.FindAction("ScrollCamera", throwIfNotFound: true);
+        // PlayerUIInteractionMap
+        m_PlayerUIInteractionMap = asset.FindActionMap("PlayerUIInteractionMap", throwIfNotFound: true);
+        m_PlayerUIInteractionMap_Pause = m_PlayerUIInteractionMap.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -508,6 +560,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionsMap_Attacking;
     private readonly InputAction m_PlayerActionsMap_Aiming;
     private readonly InputAction m_PlayerActionsMap_ChangeGravity;
+    private readonly InputAction m_PlayerActionsMap_Interact;
     public struct PlayerActionsMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -516,6 +569,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Attacking => m_Wrapper.m_PlayerActionsMap_Attacking;
         public InputAction @Aiming => m_Wrapper.m_PlayerActionsMap_Aiming;
         public InputAction @ChangeGravity => m_Wrapper.m_PlayerActionsMap_ChangeGravity;
+        public InputAction @Interact => m_Wrapper.m_PlayerActionsMap_Interact;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionsMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -537,6 +591,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ChangeGravity.started += instance.OnChangeGravity;
             @ChangeGravity.performed += instance.OnChangeGravity;
             @ChangeGravity.canceled += instance.OnChangeGravity;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActionsMapActions instance)
@@ -553,6 +610,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ChangeGravity.started -= instance.OnChangeGravity;
             @ChangeGravity.performed -= instance.OnChangeGravity;
             @ChangeGravity.canceled -= instance.OnChangeGravity;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayerActionsMapActions instance)
@@ -616,6 +676,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public ThirdPersonMapActions @ThirdPersonMap => new ThirdPersonMapActions(this);
+
+    // PlayerUIInteractionMap
+    private readonly InputActionMap m_PlayerUIInteractionMap;
+    private List<IPlayerUIInteractionMapActions> m_PlayerUIInteractionMapActionsCallbackInterfaces = new List<IPlayerUIInteractionMapActions>();
+    private readonly InputAction m_PlayerUIInteractionMap_Pause;
+    public struct PlayerUIInteractionMapActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PlayerUIInteractionMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_PlayerUIInteractionMap_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerUIInteractionMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerUIInteractionMapActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerUIInteractionMapActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerUIInteractionMapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerUIInteractionMapActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IPlayerUIInteractionMapActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IPlayerUIInteractionMapActions instance)
+        {
+            if (m_Wrapper.m_PlayerUIInteractionMapActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerUIInteractionMapActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerUIInteractionMapActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerUIInteractionMapActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerUIInteractionMapActions @PlayerUIInteractionMap => new PlayerUIInteractionMapActions(this);
     public interface IPlayerLocomotionMapActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -630,9 +736,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAttacking(InputAction.CallbackContext context);
         void OnAiming(InputAction.CallbackContext context);
         void OnChangeGravity(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IThirdPersonMapActions
     {
         void OnScrollCamera(InputAction.CallbackContext context);
+    }
+    public interface IPlayerUIInteractionMapActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

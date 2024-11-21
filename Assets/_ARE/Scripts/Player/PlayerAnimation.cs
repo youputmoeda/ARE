@@ -24,7 +24,6 @@ public class PlayerAnimation : MonoBehaviour
 
     // Actions
     private static int isAttackingHash = Animator.StringToHash("isAttacking");
-    private static int isGatheringHash = Animator.StringToHash("isGathering");
     private static int isPlayingActionHash = Animator.StringToHash("isPlayingAction");
     private int[] actionHashes;
 
@@ -45,7 +44,7 @@ public class PlayerAnimation : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _playerActionsInput = GetComponent<PlayerActionsInput>();
 
-        actionHashes = new int[] { isGatheringHash };
+        actionHashes = new int[] { };
     }
 
     private void Update()
@@ -77,7 +76,6 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(isJumpingHash, isJumping);
         _animator.SetBool(isRotatingToTargetHash, _playerController.IsRotatingToTarget);
         _animator.SetBool(isAttackingHash, _playerActionsInput.AttackPressed);
-        _animator.SetBool(isGatheringHash, _playerActionsInput.GatherPressed);
         _animator.SetBool(isPlayingActionHash, isPlayingAction);
 
         _animator.SetFloat(inputXHash, _currentBlendInput.x);

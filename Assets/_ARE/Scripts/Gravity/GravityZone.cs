@@ -19,6 +19,11 @@ public class GravityZone : MonoBehaviour
     private void Awake()
     {
         _initialPosition = _map.transform.position;
+        var teste = PlayerInputManager.Instance;
+        _player = teste.GetComponentInParent<PlayerController>();
+        _actionsInput = _player.GetComponent<PlayerActionsInput>();
+        Debug.Log("Player encontrado: " + _player);
+        Debug.Log("ActionsInput encontrado: " + _actionsInput);
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 
@@ -30,11 +35,6 @@ public class GravityZone : MonoBehaviour
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         _initialPosition = _map.transform.position;
-        var teste = PlayerInputManager.Instance;
-        _player = teste.GetComponentInParent<PlayerController>();
-        _actionsInput = _player.GetComponent<PlayerActionsInput>();
-        Debug.Log("Player encontrado: " + _player);
-        Debug.Log("ActionsInput encontrado: " + _actionsInput);
     }
 
     private void OnTriggerStay(Collider other)

@@ -6,12 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_ARE/Scenes/A.unity
+    path: Assets/_ARE/Scenes/MainMenu.unity
+    guid: 0401b2ea56a23c34dbed69c90d3006e0
+  - enabled: 1
+    path: Assets/_ARE/Scenes/Room.unity
+    guid: 5b79386ae0ebd4da58177e7b72f20ad8
+  - enabled: 1
+    path: Assets/_ARE/Scenes/0_1.0A-Cutscene.unity
+    guid: 090e2006d80df4ca39d39a075d4d12a4
+  - enabled: 1
+    path: Assets/_ARE/Scenes/0_1.1A.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/_ARE/Scenes/R.unity
+    path: Assets/_ARE/Scenes/0_2.0R-Cutscene.unity
+    guid: 7a809da519d5b43aeb5f9aa7497303b0
+  - enabled: 1
+    path: Assets/_ARE/Scenes/0_2.1R.unity
     guid: b449018c7d76547e2a30b0fe90c0bd96
   - enabled: 1
-    path: Assets/_ARE/Scenes/E.unity
+    path: Assets/_ARE/Scenes/0_3.0E-Cutscene.unity
+    guid: fe9042949821c41fbb8c47fb22974bf0
+  - enabled: 1
+    path: Assets/_ARE/Scenes/0_3.1E.unity
     guid: 09bf045bb8dc84b37a6bc4216ef234cc
+  - enabled: 1
+    path: Assets/_ARE/Scenes/1FirstPlay.unity
+    guid: 9dd0b58cc62d54deb84c487f12de8568
   m_configObjects: {}

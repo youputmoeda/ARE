@@ -5,29 +5,18 @@ using UnityEngine;
 public class TutorialJumpingPad : TutorialStep
 {
     bool tutorialHasFinished = false;
-    bool hasLeftCube;
 
     public override void ActivateStep()
     {
         tutorialText.text = message;
-        hasLeftCube = false;
         this.gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && hasLeftCube && !tutorialHasFinished)
+        if (other.CompareTag("Player") && !tutorialHasFinished)
         {
-            hasLeftCube = false;
             tutorialManager.CompleteStep();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            hasLeftCube = true;
         }
     }
 
