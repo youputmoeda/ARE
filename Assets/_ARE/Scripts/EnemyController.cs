@@ -22,11 +22,12 @@ public class EnemyController : MonoBehaviour
     public float _sightRange, _attackRange;
     public bool _playerInSightRange, _playerInAttackRange;
     public float _timeBetweenAttacks;
+    public int _attackDamage;
     bool _alreadyAttacked;
 
     private void Awake()
     {
-        _player = GameObject.Find("ThirdPersonCharacter").transform;
+        _player = GameObject.Find("Player").transform;
         _agent = GetComponent<NavMeshAgent>();
     }
 
@@ -78,6 +79,7 @@ public class EnemyController : MonoBehaviour
         if (!_alreadyAttacked)
         {
             //Attack code here
+            _player.GetComponent<LifeSystem>().TakeDamage(_attackDamage);
             _alreadyAttacked = true;
             Invoke(nameof(ResetAttack), _timeBetweenAttacks);
         }

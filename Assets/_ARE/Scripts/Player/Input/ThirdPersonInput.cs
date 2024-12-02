@@ -50,7 +50,8 @@ public class ThirdPersonInput : MonoBehaviour, PlayerControls.IThirdPersonMapAct
     #region Update
     private void Update()
     {
-        _thirdPersonFollow.CameraDistance = Mathf.Clamp(_thirdPersonFollow.CameraDistance + ScrollInput.y, _cameraMinZoom, _cameraMaxZoom);
+        if (_thirdPersonFollow != null)
+            _thirdPersonFollow.CameraDistance = Mathf.Clamp(_thirdPersonFollow.CameraDistance + ScrollInput.y, _cameraMinZoom, _cameraMaxZoom);
     }
 
     private void LateUpdate()

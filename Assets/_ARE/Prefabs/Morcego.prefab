@@ -118,7 +118,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 9.11
-  m_Speed: 3.5
+  m_Speed: 3.86
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 6965971910627852667}
-  _health: 100
+  _health: 300
   _player: {fileID: 0}
   _whatIsGround:
     serializedVersion: 2
@@ -152,9 +152,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _walkPoint: {x: 0, y: 0, z: 0}
-  _walkPointRange: 5
-  _sightRange: 7.4
-  _attackRange: 3.44
+  _walkPointRange: 2.42
+  _sightRange: 4.85
+  _attackRange: 2.47
   _playerInSightRange: 0
   _playerInAttackRange: 0
-  _timeBetweenAttacks: 0.5
+  _timeBetweenAttacks: 0.2
+  _attackDamage: 1

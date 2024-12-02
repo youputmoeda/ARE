@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 5847573037724549094}
-  _health: 100
+  _health: 300
   _player: {fileID: 0}
   _whatIsGround:
     serializedVersion: 2
@@ -80,12 +80,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _walkPoint: {x: 0, y: 0, z: 0}
-  _walkPointRange: 5
+  _walkPointRange: 2.42
   _sightRange: 19.2
   _attackRange: 5.61
   _playerInSightRange: 0
   _playerInAttackRange: 0
   _timeBetweenAttacks: 0.5
+  _attackDamage: 1
 --- !u!114 &8635614582405569190
 MonoBehaviour:
   m_ObjectHideFlags: 0

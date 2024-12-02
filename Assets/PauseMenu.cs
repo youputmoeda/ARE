@@ -11,24 +11,19 @@ public class PauseMenu : MonoBehaviour
 
     private PlayerUIInput _playerUIInput;
 
-   private void Awake()
-   {
+    private void Awake()
+    {
         _playerUIInput = GetComponent<PlayerUIInput>();
-
-   }
+    }
 
     void Start()
     {
             pauseMenu.SetActive(false);
-        
     }
-
-   
 
     private void Update()
     {
-         if (_playerUIInput != null && _playerUIInput.escapePressed)
-       // if (Input.GetKeyDown(KeyCode.Escape))
+        if (_playerUIInput != null && _playerUIInput.escapePressed)
         {
             if (isPaused)
             {
@@ -40,39 +35,34 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
+
     private void PauseGame()
     {        
-     pauseMenu.SetActive(true);
-     Time.timeScale = 0f;
-     isPaused = true;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
     
-     Cursor.lockState = CursorLockMode.None;
-     Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
-
 
     public void ResumeGame()
     {
-     
-     pauseMenu.SetActive(false);
-     Time.timeScale = 1f;
-     isPaused = false;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
 
-     Cursor.lockState = CursorLockMode.Locked;
-     Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void MainMenu()
     {
-     SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
-
-
 
     public void QuitGame()
     {
-     Application.Quit();
+        Application.Quit();
     }
-
-        
 }

@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
     public void NewGame()
     {
-        SceneManager.LoadScene(1);
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentIndex + 1);
     }
 
     public void LoadGame()
     {
-        int lastIndex = SceneManager.sceneCountInBuildSettings - 2;
+        int lastIndex = SceneManager.sceneCountInBuildSettings - 1;
         SceneManager.LoadScene(lastIndex);
     }
 
@@ -23,6 +23,4 @@ public class MainMenu : MonoBehaviour
         Debug.Log("QUIT");
         Application.Quit();
     }
-        
-
 } 

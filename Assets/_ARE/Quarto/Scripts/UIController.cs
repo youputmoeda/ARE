@@ -7,7 +7,8 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private RawImage interactionImagePrompt;
-    [SerializeField] private Camera dummyCamera; // Para posicionar o texto corretamente
+    [SerializeField] private Camera firstDummyCamera;
+    [SerializeField] private Camera thirdMainCamera;
     private Transform currentTarget; // Objeto interag?vel atualmente destacado
     private Vector3 currentOffset; // Offset atual do objeto interag?vel
 
@@ -16,8 +17,13 @@ public class UIController : MonoBehaviour
     private Color originalOutlineColor;
     private float originalOutlineWidth;
 
+    private PlayerController _player;
+    private Camera dummyCamera; // Para posicionar o texto corretamente
+
     private void Awake()
     {
+        _player = GetComponentInParent<PlayerController>();
+
         if (interactionImagePrompt == null)
         {
             Debug.LogError("Interaction Prompt is not assigned in the UIController!");
@@ -28,6 +34,12 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
+        if (thirdMainCamera == null && firstDummyCamera == null)
+            return;
+
+
+        dummyCamera = _player._isThirdPlayer ? thirdMainCamera : firstDummyCamera;
+
         if (currentTarget != null)
         {
             Vector3 screenPosition = dummyCamera.WorldToScreenPoint(currentTarget.position + currentOffset);

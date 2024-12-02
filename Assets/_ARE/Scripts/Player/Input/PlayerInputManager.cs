@@ -31,6 +31,9 @@ public class PlayerInputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerControls.Disable();
+        if (PlayerControls != null)
+        {
+            PlayerControls.Disable();
+        }
     }
 }

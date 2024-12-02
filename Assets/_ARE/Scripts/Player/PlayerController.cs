@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private CharacterController _characterController;
-    [SerializeField] private Camera _playerCamera;
+    [SerializeField] private Camera _firstPlayerCamera;
+    [SerializeField] private Camera _thirdPlayerCamera;
     public float RotationMismatch { get; private set; } = 0f;
     public bool IsRotatingToTarget { get; private set; } = false;
     public bool _isThirdPlayer = true;
@@ -50,6 +51,8 @@ public class PlayerController : MonoBehaviour
     [Header("Teleporting settings")]
     [SerializeField] float worldBottomBoundary = -100f;
     (Vector3, Quaternion) initialPositionAndRotation;
+
+    private Camera _playerCamera;
 
     private PlayerLocomotionInput _playerLocomotionInput;
     private PlayerState _playerState;
@@ -86,6 +89,8 @@ public class PlayerController : MonoBehaviour
         UpdateMovementState();
         if (_isThirdPlayer)
             PlayAudios();
+
+        _playerCamera = _isThirdPlayer ? _thirdPlayerCamera : _firstPlayerCamera;
 
         HandleVerticalMovement();
         HandleLateralMovement();

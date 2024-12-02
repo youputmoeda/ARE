@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
+  teleportByTrigger: 1
 --- !u!65 &248014620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1013,6 +1014,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ThirdPersonCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571990186386853465, guid: 2de54717b939047239f2436c77590835,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3758758335311826949, guid: 2de54717b939047239f2436c77590835,
         type: 3}
