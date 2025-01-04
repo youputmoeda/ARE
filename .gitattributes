@@ -1,1 +1,2 @@
 *.MOV filter=lfs diff=lfs merge=lfs -text
+Assets/_ARE/Cutscenes/FullSizeRender.MOV filter=lfs diff=lfs merge=lfs -text
