@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TutorialBeforeDestroyEnemy : TutorialStep
 {
+    [SerializeField] private Animator _lastDoorAnimator;
     private bool tutorialHasFinished = false;
 
     private void OnTriggerEnter(Collider other)
@@ -12,7 +13,8 @@ public class TutorialBeforeDestroyEnemy : TutorialStep
         {
             tutorialText.text = message;
             tutorialHasFinished = true;
-            Invoke(nameof(EndThisTutorialWithTime), 2f);
+            _lastDoorAnimator.SetTrigger("start");
+            Invoke(nameof(EndThisTutorialWithTime), 4f);
         }
     }
 

@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Teleporting settings")]
     [SerializeField] float worldBottomBoundary = -100f;
-    (Vector3, Quaternion) initialPositionAndRotation;
+    [HideInInspector] public (Vector3, Quaternion) _initialPositionAndRotation;
 
     private Camera _playerCamera;
 
@@ -79,7 +79,6 @@ public class PlayerController : MonoBehaviour
 
         _antiBump = sprintSpeed;
         _stepOffset = _characterController.stepOffset;
-        initialPositionAndRotation = (transform.position, transform.rotation);
     }
     #endregion
 
@@ -147,7 +146,7 @@ public class PlayerController : MonoBehaviour
             // Toca o som de salto apenas uma vez
             if (!_jumpSoundPlayed)
             {
-                SoundFXManager.instance.PlaySoundFXClip(jumpingSoundClip, transform, 1f);
+                SoundFXManager.instance.PlaySoundFXClip(jumpingSoundClip, transform, 0.3f);
                 _jumpSoundPlayed = true; // Define como tocado
             }
             return;
@@ -339,7 +338,9 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < worldBottomBoundary)
         {
-            var (position, rotation) = initialPositionAndRotation;
+            Debug.Log("SpawnPoint: " + "80.59, 15.77, 63.32");
+            Debug.Log(_initialPositionAndRotation);
+            var (position, rotation) = _initialPositionAndRotation;
             Teleport(position, rotation);
         }
     }

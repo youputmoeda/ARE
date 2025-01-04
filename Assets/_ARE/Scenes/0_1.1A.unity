@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4208ec4499c45af8fc36036eacfa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Agora vamos aprender a correr, Carrega LShift
+  message: Agora vamos aprender a correr. Carrega em LShift.
   nextMessage: Bom trabalho!
   doorToEnable: {fileID: 1839806767}
 --- !u!1 &357817285
@@ -5365,6 +5365,12 @@ MonoBehaviour:
   - {fileID: 1356520543}
   - {fileID: 1323781479}
   lastMessage: 
+--- !u!1 &453737729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7981802767457898181, guid: aa86b640582fa4aff86f91a0281677f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6149819971029089509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &503441890
 GameObject:
   m_ObjectHideFlags: 0
@@ -5469,7 +5475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Usa WASD para te movimentares.
-  nextMessage: Bom Trabalho!
+  nextMessage: Bom trabalho!
 --- !u!1 &520110335
 GameObject:
   m_ObjectHideFlags: 0
@@ -6184,12 +6190,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 13.345, y: 132.846, z: -0.368}
---- !u!1 &797801838 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5691048327904008778, guid: e4b0b6af05bc6459296907283e37667a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1913140359}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -7047,7 +7047,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: "Ser\xE1 que consegues chegar ao outro pilar?"
-  nextMessage: "Atravessa este portal, ir\xE1 telensportar-te para o pr\xF3ximo n\xEDvel."
+  nextMessage: "Atravessa este portal. Ele ir\xE1 teletransportar-te para o pr\xF3ximo
+    n\xEDvel do tutorial."
 --- !u!1 &1356520537
 GameObject:
   m_ObjectHideFlags: 0
@@ -7183,8 +7184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc05ec68646334a7f8c6771acf624802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Passa pela a porta nova!
-  nextMessage: "Conseguiste chegar a segunda parte deste n\xEDvel!"
+  message: Passa pela nova porta!
+  nextMessage: "Conseguiste chegar \xE0 segunda parte deste n\xEDvel!"
 --- !u!114 &1356520544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7240,74 +7241,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!1 &1365152611
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1365152614}
-  - component: {fileID: 1365152613}
-  - component: {fileID: 1365152612}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1365152612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365152611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &1365152613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365152611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &1365152614
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365152611}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1367526329
 GameObject:
   m_ObjectHideFlags: 0
@@ -8390,7 +8323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a118df6a9edc430bb4b72d2674f39c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Agora atravessa a porta
+  message: Agora atravessa a porta.
   nextMessage: Bom trabalho!
 --- !u!1 &1853866072
 GameObject:
@@ -8436,7 +8369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3448d2cb8a6477a9bdd3afcffcb01a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "Agora vamos aprender a saltar, carrega 'Espa\xE7o!'"
+  message: "Agora vamos aprender a saltar. Carrega na tecla Espa\xE7o!"
   nextMessage: Bom trabalho!
 --- !u!1 &1856182294
 GameObject:
@@ -8602,7 +8535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d8c3b4ddc90450fa698d6e1c7af837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Agora salta nesta plataforma, vai te fazer descer!
+  message: Agora salta para esta plataforma. Vai fazer-te descer!
   nextMessage: Bom trabalho!
 --- !u!1 &1896111772
 GameObject:
@@ -8715,22 +8648,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8437891191343472006, guid: e4b0b6af05bc6459296907283e37667a,
         type: 3}
-      propertyPath: objectsToEnable.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8437891191343472006, guid: e4b0b6af05bc6459296907283e37667a,
-        type: 3}
       propertyPath: objectsToEnable.Array.data[0]
       value: 
       objectReference: {fileID: 1323781473}
+    - target: {fileID: 8437891191343472006, guid: e4b0b6af05bc6459296907283e37667a,
+        type: 3}
+      propertyPath: objectsToEnable.Array.data[1]
+      value: 
+      objectReference: {fileID: 453737729}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5691048327904008778, guid: e4b0b6af05bc6459296907283e37667a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1913140367}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4b0b6af05bc6459296907283e37667a, type: 3}
 --- !u!4 &1913140360 stripped
 Transform:
@@ -8738,27 +8667,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1913140359}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1913140367
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797801838}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1956272015
 GameObject:
   m_ObjectHideFlags: 0
@@ -9139,6 +9047,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloatingLife
       objectReference: {fileID: 0}
+    - target: {fileID: 8437891191343472006, guid: e4b0b6af05bc6459296907283e37667a,
+        type: 3}
+      propertyPath: objectsToEnable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437891191343472006, guid: e4b0b6af05bc6459296907283e37667a,
+        type: 3}
+      propertyPath: objectsToEnable.Array.data[0]
+      value: 
+      objectReference: {fileID: 453737729}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9156,6 +9074,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1874119954228146458, guid: 049d22a6ffe794e12802d71a3fbaf4d3,
+        type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 99495f337ae525548a545ffa41b211d7,
+        type: 2}
     - target: {fileID: 3203993649513896732, guid: 049d22a6ffe794e12802d71a3fbaf4d3,
         type: 3}
       propertyPath: m_Name
@@ -9238,86 +9162,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 387592834012249018, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 31.560444
-      objectReference: {fileID: 0}
-    - target: {fileID: 387592834012249018, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.00024414062
-      objectReference: {fileID: 0}
-    - target: {fileID: 387592834012249018, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2988171200030756234, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424125308423504354, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5138984486534562048, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5267186169696441209, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5789657348177901497, guid: aa86b640582fa4aff86f91a0281677f5,
         type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6278367353750340082, guid: aa86b640582fa4aff86f91a0281677f5,
+    - target: {fileID: 7981802767457898181, guid: aa86b640582fa4aff86f91a0281677f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557100222831594776, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_text
-      value: testetttttttt
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557100222831594776, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557100222831594776, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: fe94c784e544543e9bba22357890f369,
-        type: 2}
-    - target: {fileID: 7557100222831594776, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557100222831594776, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -9110394115010254550, guid: fe94c784e544543e9bba22357890f369,
-        type: 2}
-    - target: {fileID: 7557100222831594776, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_TextStyleHashCode
-      value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557100222831594776, guid: aa86b640582fa4aff86f91a0281677f5,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8679399381805223359, guid: aa86b640582fa4aff86f91a0281677f5,
@@ -9421,9 +9273,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7518152014375659291, guid: aa86b640582fa4aff86f91a0281677f5, type: 3}
-    - {fileID: 2644093288500865092, guid: aa86b640582fa4aff86f91a0281677f5, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa86b640582fa4aff86f91a0281677f5, type: 3}
@@ -9451,8 +9301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c044f43d3a64683820d0feb8076938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "Agora apanha o peda\xE7o que est\xE1 a tua frente"
-  nextMessage: Bom Trabalho! Agora tens vida!
+  message: "Agora apanha o peda\xE7o que est\xE1 \xE0 tua frente."
+  nextMessage: Bom trabalho! Agora tens vida!
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -9463,7 +9313,6 @@ SceneRoots:
   - {fileID: 503441891}
   - {fileID: 629480172}
   - {fileID: 1504678925}
-  - {fileID: 1365152614}
   - {fileID: 1856182295}
   - {fileID: 1896111773}
   - {fileID: 1624446171}

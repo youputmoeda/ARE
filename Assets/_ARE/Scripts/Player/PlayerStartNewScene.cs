@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
 public class PlayerStartNewScene : MonoBehaviour
 {
     [System.Serializable]
@@ -24,6 +22,8 @@ public class PlayerStartNewScene : MonoBehaviour
     [SerializeField] private ControllerSettings thirdPersonSettings;
 
     [SerializeField] private List<string> firstPersonScenes;
+
+    [SerializeField] private GameObject _lifeSystem;
 
     private CharacterController _controller;
     private PlayerController _playerController;
@@ -51,6 +51,8 @@ public class PlayerStartNewScene : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        _playerController.enabled = true;
+
         // Determina o estado do jogador (primeira ou terceira pessoa)
         _playerController._isThirdPlayer = !firstPersonScenes.Contains(scene.name);
         var settings = _playerController._isThirdPlayer ? thirdPersonSettings : firstPersonSettings;
@@ -63,6 +65,8 @@ public class PlayerStartNewScene : MonoBehaviour
 
         // Posiciona o jogador no SpawnPoint da cena
         PositionPlayerAtSpawnPoint(scene.name);
+
+        _lifeSystem.SetActive(_playerController._isThirdPlayer);
     }
 
     private void UpdateCharacterController(ControllerSettings settings)
@@ -70,8 +74,6 @@ public class PlayerStartNewScene : MonoBehaviour
         _controller.center = settings.center;
         _controller.height = settings.height;
         _controller.radius = settings.radius;
-
-        Debug.Log($"Controller atualizado para: Center={_controller.center}, Height={_controller.height}, Radius={_controller.radius}");
     }
 
     private void TogglePlayerView(ControllerSettings settings, string sceneName)
@@ -79,8 +81,6 @@ public class PlayerStartNewScene : MonoBehaviour
         thirdPersonSettings.mesh.SetActive(_playerController._isThirdPlayer);
         firstPersonSettings.mesh.SetActive(!_playerController._isThirdPlayer);
 
-        Debug.Log("scene name: " + sceneName);
-        Debug.Log("Faz o que quero? " + sceneName.EndsWith("Cutscene"));
         if (sceneName.EndsWith("Cutscene"))
         {
             thirdPersonSettings.camera.gameObject.SetActive(false);
@@ -98,6 +98,7 @@ public class PlayerStartNewScene : MonoBehaviour
 
         if (spawnPoint != null)
         {
+            _playerController._initialPositionAndRotation = (spawnPoint.position, spawnPoint.rotation);
             _controller.enabled = false; // Desativa temporariamente para evitar bugs de colisão
             transform.position = spawnPoint.position;
             transform.rotation = spawnPoint.rotation;

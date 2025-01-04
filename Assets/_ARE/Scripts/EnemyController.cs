@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private AudioClip enemyDyingSoundClip;
+    [SerializeField] private AudioClip hitmarkerSoundClip;
+
     public NavMeshAgent _agent;
 
     public float _health;
@@ -94,7 +97,15 @@ public class EnemyController : MonoBehaviour
     {
         _health -= damage;
 
-        if (_health <= 0) Destroy(this.gameObject);
+        if (_health <= 0)
+        {
+            SoundFXManager.instance.PlaySoundFXClip(enemyDyingSoundClip, transform, 0.8f);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            SoundFXManager.instance.PlaySoundFXClip(hitmarkerSoundClip, transform, 1f);    
+        }
     }
 
     private void OnDrawGizmos()

@@ -15,7 +15,7 @@ public class TutorialFinishTutorial : TutorialStep
     {
         if (other.CompareTag("Player") && !tutorialHasFinished)
         {
-            tutorialManager.CompleteStep();
+            tutorialManager.CompleteStep(5f);
         }
     }
 

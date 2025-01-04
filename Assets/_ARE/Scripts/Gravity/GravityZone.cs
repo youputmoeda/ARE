@@ -22,8 +22,6 @@ public class GravityZone : MonoBehaviour
         var teste = PlayerInputManager.Instance;
         _player = teste.GetComponentInParent<PlayerController>();
         _actionsInput = _player.GetComponent<PlayerActionsInput>();
-        Debug.Log("Player encontrado: " + _player);
-        Debug.Log("ActionsInput encontrado: " + _actionsInput);
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 

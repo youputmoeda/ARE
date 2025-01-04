@@ -57,7 +57,7 @@ public class UIController : MonoBehaviour
     }
 
     // Chamado pelo Player para ativar o texto
-    public void ShowInteractionPrompt(Transform target, string message)
+    public void ShowInteractionPrompt(Transform target)
     {
         currentTarget = target; // Define o alvo atual
         interactionImagePrompt.gameObject.SetActive(true);

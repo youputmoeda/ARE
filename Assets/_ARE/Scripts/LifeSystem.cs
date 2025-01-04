@@ -5,6 +5,9 @@ using UnityEngine;
 public class LifeSystem : MonoBehaviour
 {
     [SerializeField] private AudioClip dyingSoundClip;
+    [SerializeField] private AudioClip damageSoundClip;
+
+    [SerializeField] private GameObject gameOverScreen; 
 
     public GameObject[] lifes;
     public float minimumFall = 2f;
@@ -65,19 +68,24 @@ public class LifeSystem : MonoBehaviour
 
     public void TakeDamage(int d)
     {
-        Debug.Log(currentLife);
         for (int i = 1; i <= d; d--)
         {
             if (currentLife - i == 0)
             {
-                SoundFXManager.instance.PlaySoundFXClip(dyingSoundClip, transform, 1f);
+                SoundFXManager.instance.PlaySoundFXClip(dyingSoundClip, transform, 0.25f);
                 currentLife -= i;
                 lifes[currentLife].SetActive(false);
+                TriggerGameOver();
                 return;
             }
 
             else if (currentLife <= 0)
                 return;
+
+            else
+            {
+                SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 0.25f);
+            }
 
             currentLife -= i;
             lifes[currentLife].SetActive(false);
@@ -94,5 +102,16 @@ public class LifeSystem : MonoBehaviour
             lifes[currentLife].SetActive(true);
             currentLife += i;
         }
+    }
+
+    private void TriggerGameOver()
+    {
+        Time.timeScale = 0f; // Pausa o jogo
+        gameOverScreen.SetActive(true); // Ativa o Game Over Screen
+
+        transform.SetParent(null);
+        DontDestroyOnLoad(transform);
+        RecoverLife(1);
+        SetCursorStateScript.SetCursorState(true);
     }
 }

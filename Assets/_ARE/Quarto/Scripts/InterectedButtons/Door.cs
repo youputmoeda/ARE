@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Door : MonoBehaviour
 {
     // Item variables
 
     // Door open animations
+    [SerializeField] private VideoPlayerScript _videoPlayerScript;
+    [SerializeField] private VideoClip _clip;
+    [SerializeField] private GameObject _endUI;
+
 
     public Interact openFromInteraction;
 
@@ -24,6 +29,11 @@ public class Door : MonoBehaviour
             openFromInteraction = addComp;
             openFromInteraction.GetInteractEvent.HasInteracted += OpenDoor;
         }
+
+        if (_videoPlayerScript != null)
+        {
+            _videoPlayerScript.OnVideoEnd += OpenEndUI;
+        }
     }
 
     private void OnDisable()
@@ -32,11 +42,29 @@ public class Door : MonoBehaviour
         {
             openFromInteraction.GetInteractEvent.HasInteracted -= OpenDoor;
         }
+
+        if (_videoPlayerScript != null)
+        {
+            _videoPlayerScript.OnVideoEnd -= OpenEndUI;
+        }
     }
 
     public void OpenDoor()
     {
-        Debug.Log("Door is now open.");
+        if (_videoPlayerScript != null && _clip != null)
+        {
+            _videoPlayerScript.PlayVideo(_clip);
+        }
+
+        var player = openFromInteraction.GetPlayer;
+        player.GetComponent<PlayerController>().enabled = false;
+    }
+
+    private void OpenEndUI()
+    {
+        SetCursorStateScript.SetCursorState(true);
+
+        _endUI.SetActive(true);
     }
 }
 

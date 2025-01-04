@@ -62,7 +62,7 @@ public class PlayerInteractions : MonoBehaviour
             {
                 currentlyHighlightedItem = closestHighlightable;
                 closestHighlightable.Highlight();
-                uiController.ShowInteractionPrompt(closestHighlightable.transform, "E");
+                uiController.ShowInteractionPrompt(closestHighlightable.transform);
             }
 
             currentlyHighlightedItem = closestHighlightable;
@@ -73,7 +73,7 @@ public class PlayerInteractions : MonoBehaviour
             Vector3 screenPos = dummyCamera.WorldToScreenPoint(currentlyHighlightedItem.transform.position);
             if (screenPos.z > 0) // Garante que o objeto est? vis?vel
             {
-                uiController.ShowInteractionPrompt(currentlyHighlightedItem.transform, "E");
+                uiController.ShowInteractionPrompt(currentlyHighlightedItem.transform);
             }
             else
             {
@@ -119,13 +119,14 @@ public class PlayerInteractions : MonoBehaviour
                     currentlyHighlightedItem = highlightable;
 
                     // Mostrar o texto de intera??o
-                    uiController.ShowInteractionPrompt(currentlyHighlightedItem.transform, "E");
+                    uiController.ShowInteractionPrompt(currentlyHighlightedItem.transform);
                 }
 
                 // L?gica de intera??o
                 if (interactScript) // Substituir pela l?gica do Input System se necess?rio
                 {
                     interactScript?.CallInteract(this);
+                    uiController.HideInteractionPrompt();
                 }
             }
         }

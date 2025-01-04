@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerUIInput : MonoBehaviour, PlayerControls.IPlayerUIInteractionMapActions
 {
 
-    public bool escapePressed { get; private set; }
+    public bool escapePressed { get; set; }
     
     private void OnEnable()
     {

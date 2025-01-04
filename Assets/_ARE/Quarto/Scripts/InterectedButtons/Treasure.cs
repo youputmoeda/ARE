@@ -5,7 +5,8 @@ using UnityEngine;
 public class Treasure : MonoBehaviour
 {
     // Item variables
-    [SerializeField] Animator selfAnimator = null;
+    [SerializeField] List<Animator> _animations = null;
+    [SerializeField] GameObject _itemToEnable = null;
     // Picture open animations
 
     public Interact openFromInteraction;
@@ -38,8 +39,11 @@ public class Treasure : MonoBehaviour
 
     public void PressedButton()
     {
-        if (selfAnimator != null)
-            selfAnimator.SetTrigger("start");
+        if (_animations != null)
+            _animations.ForEach(x => x.SetTrigger("start"));
+
+        if (_itemToEnable != null)
+            _itemToEnable.SetActive(true);
     }
 }
 

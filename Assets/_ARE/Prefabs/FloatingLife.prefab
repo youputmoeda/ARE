@@ -120,7 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9090ad9278d48cd83f4038f6f516c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToEnable: []
+  objectsToEnable:
+  - {fileID: 0}
+  - {fileID: 0}
+  pickingSoundClip: {fileID: 8300000, guid: 6aac22476fa21934ebe8605a1afa465e, type: 3}
 --- !u!114 &5165235846576354400
 MonoBehaviour:
   m_ObjectHideFlags: 0
